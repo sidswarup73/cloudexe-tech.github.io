@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloudexe DevCloud — GPU Cloud for Research Labs</title>
+  <link rel="icon" type="image/x-icon" href="/images/logo.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+
+    :root {
+      --orange:   #F26419;
+      --orange-l: #FEF0E7;
+      --orange-b: #FDDCC9;
+      --ink:      #111110;
+      --mid:      #5A5750;
+      --dim:      #9E9B96;
+      --line:     #E8E5E0;
+      --bg:       #FAFAF8;
+      --white:    #FFFFFF;
+      --r:        10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 99;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-row {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+
+    .logo {
+      display: flex; align-items: center;
+      text-decoration: none; color: var(--ink);
+    }
+
+    .logo img { height: 28px; }
+
+    .logo-name {
+      font-size: 20px; font-weight: 800;
+      letter-spacing: -.5px;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13.5px; font-weight: 500;
+      color: var(--mid); text-decoration: none;
+      transition: color .14s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center;
+      font-family: inherit; font-size: 13.5px; font-weight: 600;
+      padding: 9px 20px; border-radius: var(--r);
+      border: none; cursor: pointer; text-decoration: none;
+      transition: all .14s;
+    }
+
+    .btn-orange {
+      background: var(--orange); color: #fff;
+      box-shadow: 0 1px 4px rgba(242,100,25,.28);
+    }
+    .btn-orange:hover {
+      background: #D9580F;
+      box-shadow: 0 4px 16px rgba(242,100,25,.32);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent; color: var(--mid);
+      border: 1.5px solid var(--line);
+    }
+    .btn-ghost:hover { border-color: #C8C4BC; color: var(--ink); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 96px 0 88px;
+      border-bottom: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 11.5px; font-weight: 600;
+      letter-spacing: .6px; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 4.8vw, 56px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 1.7vw, 17px);
+      color: var(--mid);
+      margin-bottom: 36px;
+      line-height: 1.65;
+      max-width: 380px;
+    }
+
+    .hero-actions {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+
+    .hero-actions .btn { font-size: 14px; padding: 10px 24px; }
+
+    .hero-visual {
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    lottie-player.hero-lottie {
+      width: 100%; max-width: 440px;
+    }
+
+    /* ── Section shared ── */
+    .section { padding: 88px 0; border-bottom: 1px solid var(--line); }
+    .section-sm { padding: 72px 0; border-bottom: 1px solid var(--line); }
+    .bg-tint { background: var(--bg); }
+
+    .eyebrow {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .8px; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-h {
+      font-size: clamp(24px, 3.2vw, 36px);
+      font-weight: 800; letter-spacing: -1px;
+      line-height: 1.15; margin-bottom: 14px;
+    }
+
+    .section-p {
+      font-size: 16px; color: var(--mid);
+      max-width: 480px; line-height: 1.7;
+    }
+
+    /* ── Why ── */
+    .why-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .why-points { display: flex; flex-direction: column; }
+
+    .why-point {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .why-point:last-child { border-bottom: none; }
+    .why-point:first-child { padding-top: 0; }
+
+    .why-check {
+      width: 22px; height: 22px; min-width: 22px;
+      background: var(--orange-l);
+      border: 1.5px solid var(--orange-b);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+
+    .why-check svg { width: 11px; height: 11px; }
+
+    .why-point-title {
+      font-size: 15px; font-weight: 700;
+      letter-spacing: -.1px;
+    }
+
+    .why-point-sub {
+      font-size: 13.5px; color: var(--mid);
+      margin-top: 3px; line-height: 1.55;
+    }
+
+    /* ── Features ── */
+    .features-intro { max-width: 540px; margin-bottom: 48px; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+
+    .feature {
+      background: var(--white);
+      padding: 28px 24px 32px;
+      transition: background .15s;
+    }
+    .bg-tint .feature { background: var(--bg); }
+    .feature:hover { background: var(--white); }
+
+    .feature-icon {
+      width: 36px; height: 36px;
+      background: var(--orange-l);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .feature-icon svg { width: 18px; height: 18px; }
+
+    .feature h3 {
+      font-size: 15px; font-weight: 700;
+      letter-spacing: -.15px; margin-bottom: 6px;
+    }
+
+    .feature p {
+      font-size: 13.5px; color: var(--mid); line-height: 1.6;
+    }
+
+    /* ── Pricing ── */
+    .pricing-intro { margin-bottom: 44px; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .price-card {
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 28px 24px 32px;
+      background: var(--white);
+      position: relative;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .price-card:hover {
+      border-color: #D0CDC7;
+      box-shadow: 0 4px 20px rgba(0,0,0,.07);
+    }
+    .price-card.featured {
+      border-color: var(--line);
+    }
+
+    .price-badge {
+      position: absolute; top: -11px; left: 20px;
+      background: var(--orange); color: #fff;
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: .4px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 100px;
+    }
+
+    .price-tier {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .6px; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 10px;
+    }
+
+    .price-name {
+      font-size: 22px; font-weight: 800;
+      letter-spacing: -.5px; margin-bottom: 8px;
+    }
+
+    .price-desc {
+      font-size: 13.5px; color: var(--mid);
+      line-height: 1.6; margin-bottom: 22px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .price-attrs { display: flex; flex-direction: column; gap: 10px; }
+
+    .price-attr {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 13px; color: var(--mid);
+    }
+
+    .price-attr-dot {
+      width: 6px; height: 6px; min-width: 6px;
+      border-radius: 50%; background: var(--orange); opacity: .6;
+    }
+
+    .price-amount {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 22px; font-weight: 800;
+      letter-spacing: -.5px; color: var(--ink);
+    }
+
+    .price-unit {
+      font-size: 12px; font-weight: 500;
+      color: var(--dim); letter-spacing: 0;
+      margin-left: 2px;
+    }
+
+    /* ── About ── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-left .section-p { max-width: 100%; margin-bottom: 32px; }
+
+    .about-partners { display: flex; flex-direction: column; gap: 24px; }
+
+    .partner-group-label {
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: .7px; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 10px;
+    }
+
+    .partner-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12.5px; font-weight: 600;
+      color: var(--mid);
+      padding: 6px 12px;
+      border: 1.5px solid var(--line);
+      border-radius: var(--r);
+      background: var(--bg);
+      transition: border-color .14s, color .14s;
+    }
+    .chip:hover { border-color: #C8C4BC; color: var(--ink); }
+
+    .chip-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--orange); opacity: .65;
+    }
+
+    .about-right { display: flex; flex-direction: column; gap: 20px; }
+
+    .about-fact {
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+
+    .fact-icon {
+      width: 36px; height: 36px; min-width: 36px;
+      background: var(--orange-l);
+      border: 1px solid var(--orange-b);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .fact-icon svg { width: 18px; height: 18px; }
+
+    .fact-text {
+      font-size: 14px; color: var(--mid);
+      line-height: 1.65;
+    }
+    .fact-text strong { color: var(--ink); font-weight: 600; }
+
+    .investor-block { margin-top: 32px; }
+
+    .investor-label {
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: .7px; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 12px;
+    }
+
+    .investor-logo {
+      max-height: 44px; width: auto;
+      filter: grayscale(1); opacity: .5;
+      transition: opacity .15s;
+    }
+    .investor-logo:hover { opacity: .8; }
+
+    /* ── CTA strip ── */
+    .cta-strip {
+      padding: 80px 0;
+      text-align: center;
+      background: var(--ink);
+    }
+
+    .cta-strip h2 {
+      font-size: clamp(26px, 3.8vw, 42px);
+      font-weight: 800; letter-spacing: -1.2px;
+      color: #fff; margin-bottom: 14px; line-height: 1.15;
+    }
+
+    .cta-strip h2 em { font-style: normal; color: var(--orange); }
+
+    .cta-strip p {
+      font-size: 16px; color: rgba(255,255,255,.5);
+      margin-bottom: 36px;
+    }
+
+    .cta-row {
+      display: flex; align-items: center; gap: 8px;
+      justify-content: center;
+      background: rgba(255,255,255,.07);
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 5px 5px 5px 18px;
+      max-width: 400px; margin: 0 auto;
+      transition: border-color .15s;
+    }
+    .cta-row:focus-within {
+      border-color: rgba(242,100,25,.55);
+      box-shadow: 0 0 0 3px rgba(242,100,25,.1);
+    }
+
+    .cta-row input[type="email"] {
+      flex: 1; border: none; outline: none;
+      background: transparent; font-family: inherit;
+      font-size: 14px; color: #fff; min-width: 180px;
+    }
+    .cta-row input::placeholder { color: rgba(255,255,255,.3); }
+
+    .cta-note {
+      margin-top: 12px; font-size: 12px;
+      color: rgba(255,255,255,.25);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,.05);
+      padding: 28px 0;
+    }
+
+    .footer-row {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+
+    .footer-logo {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .footer-logo img { height: 22px; opacity: .45; filter: brightness(10); }
+
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,.22); }
+
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a {
+      font-size: 13px; color: rgba(255,255,255,.3);
+      text-decoration: none; transition: color .14s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,.65); }
+
+    /* ── Social proof ribbon ── */
+    .ribbon-section {
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .ribbon {
+      overflow: hidden;
+      width: 100%;
+      mask-image: linear-gradient(to right,
+        transparent 0%,
+        black 80px,
+        black calc(100% - 80px),
+        transparent 100%);
+      -webkit-mask-image: linear-gradient(to right,
+        transparent 0%,
+        black 80px,
+        black calc(100% - 80px),
+        transparent 100%);
+    }
+
+    .ribbon-track {
+      display: flex;
+      align-items: stretch;
+      animation: scrollRibbon 44s linear infinite;
+      width: fit-content;
+      will-change: transform;
+    }
+    .ribbon-track:hover { animation-play-state: paused; }
+
+    @keyframes scrollRibbon {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    .ribbon-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+      width: 440px;
+      padding: 22px 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .ribbon-logo {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      padding: 4px;
+    }
+
+    .ribbon-content { flex: 1; min-width: 0; }
+
+    .ribbon-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ribbon-quote {
+      font-size: 12.5px;
+      color: var(--mid);
+      font-style: italic;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-clamp: 2;
+      overflow: hidden;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 720px) {
+      .hero-inner      { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual     { display: none; }
+      .why-layout      { grid-template-columns: 1fr; gap: 40px; }
+      .about-layout    { grid-template-columns: 1fr; gap: 40px; }
+      .features-grid   { grid-template-columns: 1fr; }
+      .pricing-grid    { grid-template-columns: 1fr; }
+      .section, .section-sm { padding: 60px 0; }
+      .hero            { padding: 64px 0 56px; }
+      nav .nav-links   { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="wrap">
+    <div class="nav-row">
+      <a href="#" class="logo">
+        <img src="/images/Orange_Wordmark.svg" alt="Cloudexe" />
+        <span class="logo-name">Cloudexe</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#why">Why DevCloud</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a href="#request" class="btn btn-orange">Get access</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="intro">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <span class="hero-label">DevCloud — Early Access</span>
+        <h1>Run your research.<br/><em>Not your infrastructure.</em></h1>
+        <p class="hero-sub">GPU cloud built for research labs. No queues. No waste. Just Science.</p>
+        <div class="hero-actions">
+          <a href="#request" class="btn btn-orange">Request access</a>
+          <a href="#why" class="btn btn-ghost">See how it works</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <lottie-player src="/images/heroanim.json" background="transparent" speed="1" class="hero-lottie" loop autoplay></lottie-player>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Social proof ribbon -->
+<div class="ribbon-section">
+  <div class="ribbon">
+    <div class="ribbon-track">
+      <!-- Original set -->
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://mma.prnewswire.com/media/1800494/DevRev_Logo.jpg" alt="DevRev Inc." />
+        <div class="ribbon-content">
+          <div class="ribbon-name">DevRev Inc.</div>
+          <div class="ribbon-quote">"We switched due to their competitive pricing and reliability" — Anshu Avinash, Tech Dir, AI and Search</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://pbs.twimg.com/profile_images/1787951527833042944/EsPYONot.jpg" alt="Collinear.ai" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">Collinear.ai</div>
+          <div class="ribbon-quote">"Love Cloudexe for their pricing and stellar support!" — Soumyadeep Bakshi, Co-founder</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://www.cmu.edu/brand/brand-guidelines/images/lettermark-600x600.jpg" alt="CMU Robotics Institute" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">CMU Robotics Institute</div>
+          <div class="ribbon-quote">"Deployments become effortless with intuitive interface." — Prof. Fernando De La Torre</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/BITS_Pilani-Logo.svg/1200px-BITS_Pilani-Logo.svg.png" alt="BITS Pilani" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">BITS Pilani, India</div>
+          <div class="ribbon-quote">"Ideal UX for managing multi-campus education/research infrastructure." — Prof. Snehanshu Saha</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Arizona_State_University_seal.svg/1200px-Arizona_State_University_seal.svg.png" alt="Arizona State University" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">Arizona State University</div>
+          <div class="ribbon-quote">"Runtime abstraction is clean...provided excellent support throughout." — Dr. Rolando Garcia, Presidential Fellow</div>
+        </div>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://mma.prnewswire.com/media/1800494/DevRev_Logo.jpg" alt="DevRev Inc." />
+        <div class="ribbon-content">
+          <div class="ribbon-name">DevRev Inc.</div>
+          <div class="ribbon-quote">"We switched due to their competitive pricing and reliability" — Anshu Avinash, Tech Dir, AI and Search</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://pbs.twimg.com/profile_images/1787951527833042944/EsPYONot.jpg" alt="Collinear.ai" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">Collinear.ai</div>
+          <div class="ribbon-quote">"Love Cloudexe for their pricing and stellar support!" — Soumyadeep Bakshi, Co-founder</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://www.cmu.edu/brand/brand-guidelines/images/lettermark-600x600.jpg" alt="CMU Robotics Institute" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">CMU Robotics Institute</div>
+          <div class="ribbon-quote">"Deployments become effortless with intuitive interface." — Prof. Fernando De La Torre</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/BITS_Pilani-Logo.svg/1200px-BITS_Pilani-Logo.svg.png" alt="BITS Pilani" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">BITS Pilani, India</div>
+          <div class="ribbon-quote">"Ideal UX for managing multi-campus education/research infrastructure." — Prof. Snehanshu Saha</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Arizona_State_University_seal.svg/1200px-Arizona_State_University_seal.svg.png" alt="Arizona State University" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">Arizona State University</div>
+          <div class="ribbon-quote">"Runtime abstraction is clean...provided excellent support throughout." — Dr. Rolando Garcia, Presidential Fellow</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Why DevCloud -->
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="why-layout">
+      <div>
+        <span class="eyebrow">Why DevCloud</span>
+        <h2 class="section-h">Traditional clouds weren't built for research.</h2>
+        <p class="section-p">They were built for IT teams. DevCloud is built for the people actually running the experiments.</p>
+      </div>
+      <div class="why-points">
+        <div class="why-point">
+          <div class="why-check">
+            <svg viewBox="0 0 12 12" fill="none">
+              <path d="M2 6l3 3 5-5" stroke="#F26419" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="why-point-title">Zero setup time</div>
+            <div class="why-point-sub">Your environment is always ready. No bootstrapping, no waiting.</div>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-check">
+            <svg viewBox="0 0 12 12" fill="none">
+              <path d="M2 6l3 3 5-5" stroke="#F26419" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="why-point-title">No cost vs. availability tradeoff</div>
+            <div class="why-point-sub">JIT GPU allocation keeps costs down without sacrificing access.</div>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-check">
+            <svg viewBox="0 0 12 12" fill="none">
+              <path d="M2 6l3 3 5-5" stroke="#F26419" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="why-point-title">No cloud complexity</div>
+            <div class="why-point-sub">No pods, no VMs to juggle. Built for researchers, not sysadmins.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What is DevCloud + Features -->
+<section class="section bg-tint" id="features">
+  <div class="wrap">
+    <div class="features-intro">
+      <span class="eyebrow">What is DevCloud</span>
+      <h2 class="section-h">One platform for development, training, and scaling.</h2>
+      <p class="section-p">GPU supply, a persistent environment, and simple team management — combined into one tool.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M9 2v7l4 2" stroke="#F26419" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="9" r="7.5" stroke="#F26419" stroke-width="1.7"/>
+          </svg>
+        </div>
+        <h3>Stay in flow</h3>
+        <p>No syncing. No rebuilding. Your environment persists exactly as you left it.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 18 18" fill="none">
+            <rect x="2" y="4" width="14" height="10" rx="2" stroke="#F26419" stroke-width="1.7"/>
+            <path d="M6 4V3M12 4V3M2 8h14" stroke="#F26419" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Simple lab management</h3>
+        <p>Users, quotas, projects — handled. Dashboards and usage tracking built in.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 18 18" fill="none">
+            <rect x="2" y="3" width="14" height="10" rx="2" stroke="#F26419" stroke-width="1.7"/>
+            <path d="M6 16h6M9 13v3" stroke="#F26419" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Always-available GPUs</h3>
+        <p>Run when you need to. Global neocloud fleet keeps availability high at all times.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <div class="wrap">
+    <div class="pricing-intro">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="section-h">Pay for how you run.</h2>
+      <p class="section-p">Three tiers matched to how your lab works — from flexible to fully guaranteed.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-tier">Silver</div>
+        <div class="price-name">Discovery</div>
+        <p class="price-desc">Best value for exploratory work and non-critical jobs. GPU capacity allocated from available pool.</p>
+        <div class="price-attrs">
+          <div class="price-attr"><span class="price-attr-dot"></span>Spot-based pricing</div>
+          <div class="price-attr"><span class="price-attr-dot"></span>Best for dev &amp; exploration</div>
+          <div class="price-attr"><span class="price-attr-dot"></span>Lowest cost</div>
+        </div>
+        <div class="price-amount">$1.39<span class="price-unit">/GPU·hr</span></div>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-tier">Gold</div>
+        <div class="price-name">Stable</div>
+        <p class="price-desc">Reliable access with no interruptions mid-job and predictable billing.</p>
+        <div class="price-attrs">
+          <div class="price-attr"><span class="price-attr-dot"></span>On-demand pricing</div>
+          <div class="price-attr"><span class="price-attr-dot"></span>Best for batch jobs</div>
+          <div class="price-attr"><span class="price-attr-dot"></span>No mid-job interruptions</div>
+        </div>
+        <div class="price-amount">$2.49<span class="price-unit">/GPU·hr</span></div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tier">Platinum</div>
+        <div class="price-name">Guaranteed</div>
+        <p class="price-desc">Committed capacity for labs that need GPU access on-demand, at any time, without competition.</p>
+        <div class="price-attrs">
+          <div class="price-attr"><span class="price-attr-dot"></span>Reserved capacity</div>
+          <div class="price-attr"><span class="price-attr-dot"></span>Best for mission critical jobs</div>
+          <div class="price-attr"><span class="price-attr-dot"></span>Priority allocation</div>
+        </div>
+        <div class="price-amount">$2.49<span class="price-unit">/GPU·hr</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section bg-tint" id="about">
+  <div class="wrap">
+    <div class="about-layout">
+      <div class="about-left">
+        <span class="eyebrow">About Cloudexe</span>
+        <h2 class="section-h">Built by people who've shipped GPU products at scale.</h2>
+        <p class="section-p">Seed-stage startup from Silicon Valley. The founding team led iconic GPU programs at NVIDIA, Intel, and Google — shipping the first CUDA GPU, first Xe GPU, and the core tech behind Google Stadia.</p>
+
+        <div class="about-partners">
+          <div>
+            <div class="partner-group-label">Design partners</div>
+            <div class="partner-chips">
+              <div class="chip"><span class="chip-dot"></span>DevRev</div>
+              <div class="chip"><span class="chip-dot"></span>Collinear.ai</div>
+              <div class="chip"><span class="chip-dot"></span>Carnegie Mellon</div>
+              <div class="chip"><span class="chip-dot"></span>BITS Pilani</div>
+              <div class="chip"><span class="chip-dot"></span>Arizona State</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="investor-block">
+          <div class="investor-label">Backed by</div>
+          <img class="investor-logo" src="https://images.squarespace-cdn.com/content/v1/602fe8eef3f6185d8768e787/1619484854465-4HYD8PML6WHXW3KPLKP4/Artboard+1.png?format=1500w" alt="Engineering Capital" />
+        </div>
+      </div>
+
+      <div class="about-right">
+        <div class="about-fact">
+          <div class="fact-icon">
+            <svg viewBox="0 0 18 18" fill="none">
+              <path d="M9 2l1.8 5.4H17l-4.9 3.6 1.9 5.6L9 13.1l-5 3.5 1.9-5.6L1 7.4h6.2L9 2z" stroke="#F26419" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="fact-text"><strong>Backed by Engineering Capital</strong> — specialists in infrastructure and virtualization.</p>
+        </div>
+        <div class="about-fact">
+          <div class="fact-icon">
+            <svg viewBox="0 0 18 18" fill="none">
+              <circle cx="9" cy="7" r="4" stroke="#F26419" stroke-width="1.7"/>
+              <path d="M2 16c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="#F26419" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="fact-text"><strong>Deep GPU pedigree</strong> — team behind NVIDIA CUDA, Intel GPU Flex, and Google Stadia.</p>
+        </div>
+        <div class="about-fact">
+          <div class="fact-icon">
+            <svg viewBox="0 0 18 18" fill="none">
+              <circle cx="9" cy="9" r="7.5" stroke="#F26419" stroke-width="1.7"/>
+              <path d="M9 5v4l3 2" stroke="#F26419" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="fact-text"><strong>Mission:</strong> simplify GPU infrastructure for enterprises, startups, and research labs.</p>
+        </div>
+        <div class="about-fact">
+          <div class="fact-icon">
+            <svg viewBox="0 0 18 18" fill="none">
+              <path d="M3 9h12M3 5h12M3 13h7" stroke="#F26419" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="fact-text"><strong>Contact us</strong> at <strong>info@cloudexe.tech</strong> for corporate inquiries or partnership discussions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip" id="request">
+  <div class="wrap">
+    <h2>Stop managing infra.<br/><em>Start running experiments.</em></h2>
+    <p>Join the early access program.</p>
+    <div class="cta-row">
+      <input type="email" placeholder="you@university.edu" />
+      <a href="https://forms.microsoft.com/r/B7sdb6JDyZ" class="btn btn-orange">Request access</a>
+    </div>
+    <p class="cta-note">No credit card &nbsp;·&nbsp; Research labs only</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <a href="#" class="footer-logo">
+        <img src="/images/Orange_Wordmark.svg" alt="Cloudexe" />
+        <span>Cloudexe</span>
+      </a>
+      <span class="footer-copy">© 2024–2026 Cloudexe Inc. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:info@cloudexe.tech">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

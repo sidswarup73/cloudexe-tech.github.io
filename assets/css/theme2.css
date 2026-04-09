@@ -1,0 +1,374 @@
+/*
+  theme2.css — Inspired by Linear.app + Render.com
+  Dark sidebar / white content split, Inter font, orange accent
+*/
+
+/* ── Google Fonts: Inter ─────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ── Design tokens ───────────────────────────────────── */
+:root {
+  --bg:           #FFFFFF;
+  --bg-alt:       #F7F8FA;
+  --bg-card:      #FFFFFF;
+  --text:         #0A0A0B;
+  --text-body:    #374151;
+  --text-muted:   #6B7280;
+  --orange:       #F97316;
+  --orange-hover: #EA6C0A;
+  --orange-light: rgba(249, 115, 22, 0.08);
+  --border:       #E5E7EB;
+  --sidebar-bg:   #0A0A0B;
+  --sidebar-text: rgba(255,255,255,0.55);
+  --sidebar-hover:#FFFFFF;
+  --radius-sm:    6px;
+  --radius-md:    10px;
+  --shadow-card:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* ── Reset overrides ─────────────────────────────────── */
+body {
+  background: var(--bg) !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+}
+
+body, input, select, textarea {
+  color: var(--text-body) !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--orange) !important;
+  border-bottom: none !important;
+  transition: color 0.15s ease !important;
+}
+a:hover {
+  color: var(--orange-hover) !important;
+}
+
+strong, b {
+  color: var(--text) !important;
+  font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text) !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+p {
+  color: var(--text-body) !important;
+}
+
+hr {
+  border-bottom-color: var(--border) !important;
+}
+
+/* ── Sidebar — dark, like Linear's app chrome ────────── */
+#sidebar {
+  background: var(--sidebar-bg) !important;
+  border-right: 1px solid rgba(255,255,255,0.06) !important;
+  box-shadow: none !important;
+}
+
+#sidebar nav a {
+  color: var(--sidebar-text) !important;
+  border-bottom: none !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+  transition: color 0.15s ease !important;
+}
+
+#sidebar nav a:hover,
+#sidebar nav a.active {
+  color: var(--sidebar-hover) !important;
+}
+
+/* ── Sections ────────────────────────────────────────── */
+.wrapper.style1-alt {
+  background-color: var(--bg) !important;
+}
+
+.wrapper.style2-alt {
+  background-color: var(--bg-alt) !important;
+}
+
+#footer.wrapper.style1-alt {
+  background-color: var(--bg-alt) !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+#footer .menu li,
+#footer .menu li a {
+  color: var(--text-muted) !important;
+  font-size: 0.85rem !important;
+  border-bottom: none !important;
+}
+
+/* ── Buttons ─────────────────────────────────────────── */
+.button,
+input[type="submit"],
+input[type="button"],
+button {
+  background-color: var(--orange) !important;
+  border: 1.5px solid var(--orange) !important;
+  border-radius: var(--radius-sm) !important;
+  color: #FFFFFF !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  box-shadow: none !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease !important;
+}
+
+.button:hover {
+  background-color: var(--orange-hover) !important;
+  border-color: var(--orange-hover) !important;
+  color: #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+/* ── Hero ────────────────────────────────────────────── */
+.hero-title {
+  color: var(--text) !important;
+  font-size: 3.25rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.08 !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.hero-title a {
+  color: var(--orange) !important;
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+.hero-text {
+  color: var(--text-muted) !important;
+  font-size: 1.125rem !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+  margin-bottom: 2rem !important;
+}
+
+.hero-button-wrapper {
+  margin-top: 2rem !important;
+}
+
+/* ── Section headers ─────────────────────────────────── */
+.section-header {
+  color: var(--text) !important;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.section-underline,
+.section-underline-large {
+  background: var(--orange) !important;
+  height: 2px !important;
+  width: 2.5rem !important;
+  border-radius: 2px !important;
+  opacity: 1 !important;
+  margin: 0.6rem 0 1.75rem !important;
+}
+
+.intro-text,
+.intro-text-large {
+  color: var(--text-muted) !important;
+  font-size: 1.0625rem !important;
+  font-weight: 400 !important;
+  max-width: 52ch;
+  line-height: 1.7 !important;
+}
+
+.body-text {
+  color: var(--text-body) !important;
+}
+
+/* ── Subheaders ──────────────────────────────────────── */
+.subheader,
+.subheader-large {
+  color: var(--text) !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  text-transform: uppercase;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.08em !important;
+  color: var(--text-muted) !important;
+  margin-top: 2.5rem !important;
+}
+
+/* ── Feature cards ───────────────────────────────────── */
+.feature-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--text-body) !important;
+  box-shadow: var(--shadow-card) !important;
+  padding: 1.5rem !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.feature-card:hover {
+  border-color: var(--orange) !important;
+  box-shadow: 0 0 0 3px var(--orange-light), var(--shadow-card) !important;
+  transform: none !important;
+}
+
+.feature-title {
+  color: var(--text) !important;
+  font-size: 0.9375rem !important;
+  font-weight: 600 !important;
+  display: block;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+/* ── Pricing cards ───────────────────────────────────── */
+.pricing-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--text-body) !important;
+  box-shadow: var(--shadow-card) !important;
+  padding: 1.5rem !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.pricing-card:hover {
+  border-color: var(--orange) !important;
+  box-shadow: 0 0 0 3px var(--orange-light), var(--shadow-card) !important;
+  transform: none !important;
+}
+
+.pricing-card-title {
+  color: var(--text) !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.pricing-list li {
+  color: var(--text-body) !important;
+  font-size: 0.9375rem !important;
+}
+
+/* ── About section ───────────────────────────────────── */
+.about-grid {
+  margin: 1.5rem 0 !important;
+}
+
+.about-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-card) !important;
+  padding: 1.5rem !important;
+}
+
+.about-card-title {
+  color: var(--text) !important;
+  font-weight: 700 !important;
+  font-size: 0.9375rem !important;
+  letter-spacing: -0.01em !important;
+}
+
+.about-card-text {
+  color: var(--text-muted) !important;
+  font-size: 0.9375rem !important;
+  margin: 0 !important;
+}
+
+.about-card-text strong {
+  color: var(--text) !important;
+  font-weight: 600 !important;
+}
+
+.investor-container {
+  margin-top: 1rem !important;
+}
+
+.investor-logo {
+  max-height: 48px !important;
+  width: auto !important;
+  filter: grayscale(1) !important;
+  opacity: 0.55 !important;
+  transition: opacity 0.15s ease !important;
+}
+
+.investor-logo:hover {
+  opacity: 0.85 !important;
+}
+
+/* ── Tables ──────────────────────────────────────────── */
+.advantages-table {
+  border-color: var(--border) !important;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  font-size: 0.9375rem !important;
+}
+
+.advantages-table th {
+  background: var(--bg-alt) !important;
+  color: var(--text) !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  letter-spacing: -0.005em;
+  padding: 0.75rem 1rem !important;
+  border-color: var(--border) !important;
+}
+
+.advantages-table td {
+  border-color: var(--border) !important;
+  color: var(--text-body) !important;
+  padding: 0.75rem 1rem !important;
+}
+
+/* ── Challenge list ──────────────────────────────────── */
+.challenge-list .challenge-item,
+.hero-list li {
+  color: var(--text-body) !important;
+  font-size: 0.9375rem !important;
+}
+
+/* ── Disaggregation boxes ────────────────────────────── */
+.disaggregation-box {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--text-body) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.disaggregation-title {
+  color: var(--text) !important;
+  font-weight: 600 !important;
+}
+
+.disaggregation-plus {
+  color: var(--orange) !important;
+  font-weight: 700 !important;
+}
+
+/* ── Lottie ──────────────────────────────────────────── */
+.lottie-hero,
+.lottie-arch {
+  filter: none !important;
+}
+
+/* ── Orange label pill (accent badge) ───────────────── */
+.accent-orange {
+  color: var(--orange) !important;
+}
