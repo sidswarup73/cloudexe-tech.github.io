@@ -180,42 +180,65 @@
     }
 
     /* ── Why ── */
-    .why-layout {
+    .why-grid {
+      display: flex; flex-direction: column; gap: 0;
+    }
+
+    .why-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
+      grid-template-columns: 1fr 32px 1fr;
+      gap: 0;
+      align-items: stretch;
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+    }
+    .why-row:last-child { border-bottom: 1px solid var(--line); }
+
+    .why-problem {
+      padding-right: 32px;
     }
 
-    .why-points { display: flex; flex-direction: column; }
-
-    .why-point {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .why-point:last-child { border-bottom: none; }
-    .why-point:first-child { padding-top: 0; }
-
-    .why-check {
-      width: 22px; height: 22px; min-width: 22px;
-      background: var(--orange-l);
-      border: 1.5px solid var(--orange-b);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin-top: 2px;
+    .why-solution {
+      padding-left: 32px;
+      border-left: 2px solid var(--orange-b);
     }
 
-    .why-check svg { width: 11px; height: 11px; }
+    .why-problem-label {
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: .7px; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 8px;
+    }
 
-    .why-point-title {
+    .why-solution-label {
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: .7px; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 8px;
+    }
+
+    .why-problem-title {
       font-size: 15px; font-weight: 700;
-      letter-spacing: -.1px;
+      letter-spacing: -.1px; color: var(--ink);
+      margin-bottom: 6px;
     }
 
-    .why-point-sub {
-      font-size: 13.5px; color: var(--mid);
-      margin-top: 3px; line-height: 1.55;
+    .why-solution-title {
+      font-size: 15px; font-weight: 700;
+      letter-spacing: -.1px; color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .why-problem-sub {
+      font-size: 13.5px; color: var(--mid); line-height: 1.6;
+    }
+
+    .why-solution-sub {
+      font-size: 13.5px; color: var(--mid); line-height: 1.6;
+    }
+
+    .why-solve-arrow {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--orange);
+      font-weight: 300; padding-top: 20px;
     }
 
     /* ── Features ── */
@@ -705,7 +728,9 @@
     @media (max-width: 720px) {
       .hero-inner      { grid-template-columns: 1fr; gap: 40px; }
       .hero-visual     { display: none; }
-      .why-layout      { grid-template-columns: 1fr; gap: 40px; }
+      .why-row         { grid-template-columns: 1fr; gap: 16px; }
+      .why-solve-arrow { display: none; }
+      .why-solution    { border-left: none; border-top: 2px solid var(--orange-b); padding-left: 0; padding-top: 16px; }
       .about-layout    { grid-template-columns: 1fr; gap: 40px; }
       .how-layout      { grid-template-columns: 1fr; gap: 40px; }
       .pricing-grid    { grid-template-columns: 1fr; }
@@ -886,47 +911,54 @@
 <!-- Why Cloudexe -->
 <section class="section" id="why">
   <div class="wrap">
-    <div class="why-layout">
-      <div>
-        <span class="eyebrow">Why Cloudexe</span>
-        <h2 class="section-h">Traditional clouds weren't built for research.</h2>
-        <p class="section-p">They were built for IT teams. Cloudexe is built for the people actually running the experiments.</p>
-      </div>
-      <div class="why-points">
-        <div class="why-point">
-          <div class="why-check">
-            <svg viewBox="0 0 12 12" fill="none">
-              <path d="M2 6l3 3 5-5" stroke="#F26419" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="why-point-title">Zero setup time</div>
-            <div class="why-point-sub">Your environment is always ready. No bootstrapping, no waiting.</div>
-          </div>
+    <span class="eyebrow">Why Cloudexe</span>
+    <h2 class="section-h" style="margin-bottom: 8px;">Traditional clouds weren't built for research.</h2>
+    <p class="section-p" style="margin-bottom: 52px;">They were built for IT teams. Here's what that costs you — and how Cloudexe fixes it.</p>
+
+    <div class="why-grid">
+
+      <div class="why-row">
+        <div class="why-problem">
+          <div class="why-problem-label">Problem</div>
+          <div class="why-problem-title">Cost vs. availability tradeoff</div>
+          <div class="why-problem-sub">Reserved instances are expensive. Spot instances disappear. Research teams end up either overpaying or waiting in queues when they need GPUs most.</div>
         </div>
-        <div class="why-point">
-          <div class="why-check">
-            <svg viewBox="0 0 12 12" fill="none">
-              <path d="M2 6l3 3 5-5" stroke="#F26419" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="why-point-title">No cost vs. availability tradeoff</div>
-            <div class="why-point-sub">JIT GPU allocation keeps costs down without sacrificing access.</div>
-          </div>
-        </div>
-        <div class="why-point">
-          <div class="why-check">
-            <svg viewBox="0 0 12 12" fill="none">
-              <path d="M2 6l3 3 5-5" stroke="#F26419" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="why-point-title">No cloud complexity</div>
-            <div class="why-point-sub">No pods, no VMs to juggle. Built for researchers, not sysadmins.</div>
-          </div>
+        <div class="why-solve-arrow">→</div>
+        <div class="why-solution">
+          <div class="why-solution-label">Cloudexe</div>
+          <div class="why-solution-title">JIT GPU architecture</div>
+          <div class="why-solution-sub">GPUs attach to your job on demand and release when done. The shared fleet stays highly utilized — keeping availability high and your cost low.</div>
         </div>
       </div>
+
+      <div class="why-row">
+        <div class="why-problem">
+          <div class="why-problem-label">Problem</div>
+          <div class="why-problem-title">Needs a sysadmin to operate</div>
+          <div class="why-problem-sub">Hyperscaler UX is built for IT professionals. Researchers end up managing VMs, containers, and networking instead of running experiments.</div>
+        </div>
+        <div class="why-solve-arrow">→</div>
+        <div class="why-solution">
+          <div class="why-solution-label">Cloudexe</div>
+          <div class="why-solution-title">Simple lab management</div>
+          <div class="why-solution-sub">Onboard users, set quotas, manage projects — all from one clean dashboard. No IT team required.</div>
+        </div>
+      </div>
+
+      <div class="why-row">
+        <div class="why-problem">
+          <div class="why-problem-label">Problem</div>
+          <div class="why-problem-title">Constant syncing and rebuilding</div>
+          <div class="why-problem-sub">Every new session means re-uploading code, reinstalling dependencies, and waiting for environments to spin up. Context-switching kills research momentum.</div>
+        </div>
+        <div class="why-solve-arrow">→</div>
+        <div class="why-solution">
+          <div class="why-solution-label">Cloudexe</div>
+          <div class="why-solution-title">Persistent base instance</div>
+          <div class="why-solution-sub">Each researcher gets a personal environment that's always on. Your code, tools, and dependencies stay exactly as you left them. No rebuilds, ever.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1057,19 +1089,6 @@
         <span class="eyebrow">About Cloudexe</span>
         <h2 class="section-h">Built by people who've shipped GPU products at scale.</h2>
         <p class="section-p">Seed-stage startup from Silicon Valley. The founding team led iconic GPU programs at NVIDIA, Intel, and Google — shipping the first CUDA GPU, first Xe GPU, and the core tech behind Google Stadia.</p>
-
-        <div class="about-partners">
-          <div>
-            <div class="partner-group-label">Design partners</div>
-            <div class="partner-chips">
-              <div class="chip"><span class="chip-dot"></span>DevRev</div>
-              <div class="chip"><span class="chip-dot"></span>Collinear.ai</div>
-              <div class="chip"><span class="chip-dot"></span>Carnegie Mellon</div>
-              <div class="chip"><span class="chip-dot"></span>BITS Pilani</div>
-              <div class="chip"><span class="chip-dot"></span>Arizona State</div>
-            </div>
-          </div>
-        </div>
 
         <div class="investor-block">
           <div class="investor-label">Backed by</div>
