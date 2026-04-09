@@ -661,6 +661,22 @@
       padding: 4px;
     }
 
+    .ribbon-logo-fallback {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--orange-l);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: -.3px;
+    }
+
     .ribbon-content { flex: 1; min-width: 0; }
 
     .ribbon-name {
@@ -782,14 +798,16 @@
         </div>
       </div>
       <div class="ribbon-item">
-        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Duke_University_seal.svg/1200px-Duke_University_seal.svg.png" alt="Duke University" />
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Duke_University_%28color%29_logo.svg/240px-Duke_University_%28color%29_logo.svg.png" alt="Duke University" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="ribbon-logo-fallback">DU</div>
         <div class="ribbon-content">
           <div class="ribbon-name">Duke University</div>
           <div class="ribbon-quote">"Easy to use, simple to operate, and has delivered strong performance for our research needs." — Prof. Yiran Chen</div>
         </div>
       </div>
       <div class="ribbon-item">
-        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Boston_University_seal.svg/1200px-Boston_University_seal.svg.png" alt="Boston University" />
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Boston_University_seal.svg/240px-Boston_University_seal.svg.png" alt="Boston University" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="ribbon-logo-fallback">BU</div>
         <div class="ribbon-content">
           <div class="ribbon-name">Boston University</div>
           <div class="ribbon-quote">"Super clean and intuitive — integral to accelerating our lab's work on learning trajectory analyses." — Prof. Najoung Kim</div>
@@ -839,14 +857,16 @@
         </div>
       </div>
       <div class="ribbon-item">
-        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Duke_University_seal.svg/1200px-Duke_University_seal.svg.png" alt="Duke University" />
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Duke_University_%28color%29_logo.svg/240px-Duke_University_%28color%29_logo.svg.png" alt="Duke University" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="ribbon-logo-fallback">DU</div>
         <div class="ribbon-content">
           <div class="ribbon-name">Duke University</div>
           <div class="ribbon-quote">"Easy to use, simple to operate, and has delivered strong performance for our research needs." — Prof. Yiran Chen</div>
         </div>
       </div>
       <div class="ribbon-item">
-        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Boston_University_seal.svg/1200px-Boston_University_seal.svg.png" alt="Boston University" />
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Boston_University_seal.svg/240px-Boston_University_seal.svg.png" alt="Boston University" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="ribbon-logo-fallback">BU</div>
         <div class="ribbon-content">
           <div class="ribbon-name">Boston University</div>
           <div class="ribbon-quote">"Super clean and intuitive — integral to accelerating our lab's work on learning trajectory analyses." — Prof. Najoung Kim</div>
