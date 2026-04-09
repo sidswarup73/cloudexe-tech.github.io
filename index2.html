@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cloudexe DevCloud — GPU Cloud for Research Labs</title>
+  <title>Cloudexe — GPU Cloud for Research Labs</title>
   <link rel="icon" type="image/x-icon" href="/images/logo.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -256,6 +256,126 @@
 
     .feature p {
       font-size: 13.5px; color: var(--mid); line-height: 1.6;
+    }
+
+    /* ── How it works ── */
+    .how-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .how-steps { display: flex; flex-direction: column; gap: 0; }
+
+    .how-step {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .how-step:first-child { padding-top: 0; }
+    .how-step:last-child  { border-bottom: none; }
+
+    .how-num {
+      width: 26px; height: 26px; min-width: 26px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: #fff;
+      margin-top: 1px;
+    }
+
+    .how-step-title {
+      font-size: 15px; font-weight: 700;
+      letter-spacing: -.1px; margin-bottom: 4px;
+    }
+
+    .how-step-sub {
+      font-size: 13.5px; color: var(--mid);
+      line-height: 1.55;
+    }
+
+    /* Architecture diagram */
+    .arch-diagram {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 28px 24px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+    }
+
+    .arch-row {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 8px;
+    }
+    .arch-row + .arch-row { margin-top: 8px; }
+
+    .arch-divider {
+      border: none; border-top: 1px dashed var(--line);
+      margin: 12px 0;
+    }
+
+    .arch-box {
+      flex: 1;
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .arch-box-label {
+      font-size: 13px; font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .arch-box-sub {
+      font-size: 11px; font-weight: 500;
+    }
+
+    .arch-box.researcher {
+      background: #FEF0E7;
+      border: 1px solid #FDDCC9;
+    }
+    .arch-box.researcher .arch-box-label { color: #C4501A; }
+    .arch-box.researcher .arch-box-sub   { color: #C4501A; opacity: .7; }
+
+    .arch-box.base {
+      background: #EEF0FD;
+      border: 1px solid #D5D9FA;
+    }
+    .arch-box.base .arch-box-label { color: #3D4BB5; }
+    .arch-box.base .arch-box-sub   { color: #3D4BB5; opacity: .7; }
+
+    .arch-box.gpu {
+      background: #EDFAF3;
+      border: 1px solid #C3EDD5;
+    }
+    .arch-box.gpu .arch-box-label { color: #1A7A45; }
+    .arch-box.gpu .arch-box-sub   { color: #1A7A45; opacity: .7; }
+
+    .arch-arrow {
+      font-size: 16px; color: var(--dim);
+      flex-shrink: 0;
+    }
+
+    .arch-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-top: 16px;
+    }
+
+    .arch-tag {
+      font-size: 11.5px; font-weight: 500;
+      color: var(--mid);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 4px 10px;
+      background: var(--bg);
+    }
+
+    .arch-caption {
+      text-align: center;
+      font-size: 11px; color: var(--dim);
+      margin-top: 14px;
+      letter-spacing: .2px;
     }
 
     /* ── Pricing ── */
@@ -571,7 +691,7 @@
       .hero-visual     { display: none; }
       .why-layout      { grid-template-columns: 1fr; gap: 40px; }
       .about-layout    { grid-template-columns: 1fr; gap: 40px; }
-      .features-grid   { grid-template-columns: 1fr; }
+      .how-layout      { grid-template-columns: 1fr; gap: 40px; }
       .pricing-grid    { grid-template-columns: 1fr; }
       .section, .section-sm { padding: 60px 0; }
       .hero            { padding: 64px 0 56px; }
@@ -591,8 +711,8 @@
         <span class="logo-name">Cloudexe</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#why">Why DevCloud</a></li>
-        <li><a href="#features">Features</a></li>
+        <li><a href="#why">Why Cloudexe</a></li>
+        <li><a href="#how">How it works</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#about">About</a></li>
       </ul>
@@ -606,7 +726,7 @@
   <div class="wrap">
     <div class="hero-inner">
       <div>
-        <span class="hero-label">DevCloud — Early Access</span>
+        <span class="hero-label">Cloudexe — Early Access</span>
         <h1>Run your research.<br/><em>Not your infrastructure.</em></h1>
         <p class="hero-sub">GPU cloud built for research labs. No queues. No waste. Just Science.</p>
         <div class="hero-actions">
@@ -661,6 +781,27 @@
           <div class="ribbon-quote">"Runtime abstraction is clean...provided excellent support throughout." — Dr. Rolando Garcia, Presidential Fellow</div>
         </div>
       </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Duke_University_seal.svg/1200px-Duke_University_seal.svg.png" alt="Duke University" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">Duke University</div>
+          <div class="ribbon-quote">"Easy to use, simple to operate, and has delivered strong performance for our research needs." — Prof. Yiran Chen</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Boston_University_seal.svg/1200px-Boston_University_seal.svg.png" alt="Boston University" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">Boston University</div>
+          <div class="ribbon-quote">"Super clean and intuitive — integral to accelerating our lab's work on learning trajectory analyses." — Prof. Najoung Kim</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Arizona_State_University_seal.svg/1200px-Arizona_State_University_seal.svg.png" alt="Arizona State University" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">Arizona State University</div>
+          <div class="ribbon-quote">"Made it easier to test ideas quickly and stay focused on the research itself." — Sangmin Jung, PhD candidate</div>
+        </div>
+      </div>
       <!-- Duplicate for seamless loop -->
       <div class="ribbon-item">
         <img class="ribbon-logo" src="https://mma.prnewswire.com/media/1800494/DevRev_Logo.jpg" alt="DevRev Inc." />
@@ -697,18 +838,39 @@
           <div class="ribbon-quote">"Runtime abstraction is clean...provided excellent support throughout." — Dr. Rolando Garcia, Presidential Fellow</div>
         </div>
       </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Duke_University_seal.svg/1200px-Duke_University_seal.svg.png" alt="Duke University" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">Duke University</div>
+          <div class="ribbon-quote">"Easy to use, simple to operate, and has delivered strong performance for our research needs." — Prof. Yiran Chen</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Boston_University_seal.svg/1200px-Boston_University_seal.svg.png" alt="Boston University" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">Boston University</div>
+          <div class="ribbon-quote">"Super clean and intuitive — integral to accelerating our lab's work on learning trajectory analyses." — Prof. Najoung Kim</div>
+        </div>
+      </div>
+      <div class="ribbon-item">
+        <img class="ribbon-logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Arizona_State_University_seal.svg/1200px-Arizona_State_University_seal.svg.png" alt="Arizona State University" />
+        <div class="ribbon-content">
+          <div class="ribbon-name">Arizona State University</div>
+          <div class="ribbon-quote">"Made it easier to test ideas quickly and stay focused on the research itself." — Sangmin Jung, PhD candidate</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Why DevCloud -->
+<!-- Why Cloudexe -->
 <section class="section" id="why">
   <div class="wrap">
     <div class="why-layout">
       <div>
-        <span class="eyebrow">Why DevCloud</span>
+        <span class="eyebrow">Why Cloudexe</span>
         <h2 class="section-h">Traditional clouds weren't built for research.</h2>
-        <p class="section-p">They were built for IT teams. DevCloud is built for the people actually running the experiments.</p>
+        <p class="section-p">They were built for IT teams. Cloudexe is built for the people actually running the experiments.</p>
       </div>
       <div class="why-points">
         <div class="why-point">
@@ -749,44 +911,69 @@
   </div>
 </section>
 
-<!-- What is DevCloud + Features -->
-<section class="section bg-tint" id="features">
+<!-- How it works -->
+<section class="section bg-tint" id="how">
   <div class="wrap">
-    <div class="features-intro">
-      <span class="eyebrow">What is DevCloud</span>
-      <h2 class="section-h">One platform for development, training, and scaling.</h2>
-      <p class="section-p">GPU supply, a persistent environment, and simple team management — combined into one tool.</p>
-    </div>
-    <div class="features-grid">
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 18 18" fill="none">
-            <path d="M9 2v7l4 2" stroke="#F26419" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="9" cy="9" r="7.5" stroke="#F26419" stroke-width="1.7"/>
-          </svg>
+    <div class="how-layout">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2 class="section-h">Persistent environment. On-demand GPUs.</h2>
+        <p class="section-p" style="margin-bottom: 36px;">Cloudexe separates your environment from your compute — a small architectural change with an outsized impact on productivity.</p>
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="how-num">1</div>
+            <div>
+              <div class="how-step-title">Your personal base instance, always on</div>
+              <div class="how-step-sub">Each researcher gets a persistent environment — code, tools, and dependencies stay exactly as you left them. No rebuilds, ever.</div>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">2</div>
+            <div>
+              <div class="how-step-title">GPUs attach just-in-time, per job</div>
+              <div class="how-step-sub">Submit a job and a GPU attaches automatically. When it's done, it releases back into the fleet — keeping availability high and your costs low.</div>
+            </div>
+          </div>
+          <div class="how-step">
+            <div class="how-num">3</div>
+            <div>
+              <div class="how-step-title">No pod juggling. No failure points.</div>
+              <div class="how-step-sub">No VMs or containers to manage. Your team gets a clean dashboard for users, quotas, and usage — Cloudexe handles the orchestration.</div>
+            </div>
+          </div>
         </div>
-        <h3>Stay in flow</h3>
-        <p>No syncing. No rebuilding. Your environment persists exactly as you left it.</p>
       </div>
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 18 18" fill="none">
-            <rect x="2" y="4" width="14" height="10" rx="2" stroke="#F26419" stroke-width="1.7"/>
-            <path d="M6 4V3M12 4V3M2 8h14" stroke="#F26419" stroke-width="1.7" stroke-linecap="round"/>
-          </svg>
+
+      <div class="arch-diagram">
+        <div class="arch-row">
+          <div class="arch-box researcher">
+            <div class="arch-box-label">Researcher</div>
+            <div class="arch-box-sub">SSH / Browser</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-box base">
+            <div class="arch-box-label">Base Instance</div>
+            <div class="arch-box-sub">Always-on env</div>
+          </div>
         </div>
-        <h3>Simple lab management</h3>
-        <p>Users, quotas, projects — handled. Dashboards and usage tracking built in.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">
-          <svg viewBox="0 0 18 18" fill="none">
-            <rect x="2" y="3" width="14" height="10" rx="2" stroke="#F26419" stroke-width="1.7"/>
-            <path d="M6 16h6M9 13v3" stroke="#F26419" stroke-width="1.7" stroke-linecap="round"/>
-          </svg>
+        <hr class="arch-divider" />
+        <div class="arch-row">
+          <div class="arch-box base">
+            <div class="arch-box-label">Base Instance</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-box gpu">
+            <div class="arch-box-label">GPU Fleet</div>
+            <div class="arch-box-sub">JIT · Release on complete</div>
+          </div>
         </div>
-        <h3>Always-available GPUs</h3>
-        <p>Run when you need to. Global neocloud fleet keeps availability high at all times.</p>
+        <div class="arch-tags">
+          <span class="arch-tag">↑ Availability</span>
+          <span class="arch-tag">↓ Cost</span>
+          <span class="arch-tag">↓ Ops overhead</span>
+          <span class="arch-tag">↑ Focus time</span>
+        </div>
+        <div class="arch-caption">Persistent Env + JIT GPU Architecture</div>
       </div>
     </div>
   </div>
@@ -895,7 +1082,7 @@
               <path d="M9 5v4l3 2" stroke="#F26419" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <p class="fact-text"><strong>Mission:</strong> simplify GPU infrastructure for enterprises, startups, and research labs.</p>
+          <p class="fact-text"><strong>Mission:</strong> simplify GPU infrastructure for research labs, startups, and enterprises.</p>
         </div>
         <div class="about-fact">
           <div class="fact-icon">
