@@ -259,33 +259,29 @@
       align-items: center;
     }
 
-    .how-steps { display: flex; flex-direction: column; gap: 0; }
+    .how-steps { display: flex; flex-direction: column; }
 
     .how-step {
-      display: flex; gap: 16px; align-items: flex-start;
-      padding: 22px 0;
+      padding: 24px 0;
       border-bottom: 1px solid var(--line);
     }
     .how-step:first-child { padding-top: 0; }
-    .how-step:last-child  { border-bottom: none; }
+    .how-step:last-child  { border-bottom: none; padding-bottom: 0; }
 
     .how-num {
-      width: 26px; height: 26px; min-width: 26px;
-      background: var(--orange);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700; color: #fff;
-      margin-top: 1px;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .7px; color: var(--orange);
+      margin-bottom: 8px;
     }
 
     .how-step-title {
       font-size: 15px; font-weight: 700;
-      letter-spacing: -.1px; margin-bottom: 4px;
+      letter-spacing: -.1px; margin-bottom: 6px; color: var(--ink);
     }
 
     .how-step-sub {
       font-size: 13.5px; color: var(--mid);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     /* Architecture diagram */
@@ -918,24 +914,18 @@
         <div class="how-steps">
           <div class="how-step">
             <div class="how-num">01</div>
-            <div>
-              <div class="how-step-title">JIT GPU architecture</div>
-              <div class="how-step-sub">GPUs attach to your job on demand and release when done. The shared fleet stays highly utilized — availability stays high, your bill stays low.</div>
-            </div>
+            <div class="how-step-title">JIT GPU architecture</div>
+            <div class="how-step-sub">GPUs attach to your job on demand and release when done. The shared fleet stays highly utilized — availability stays high, your bill stays low.</div>
           </div>
           <div class="how-step">
             <div class="how-num">02</div>
-            <div>
-              <div class="how-step-title">Persistent base instance. No rebuilds, ever.</div>
-              <div class="how-step-sub">Each researcher gets a personal environment that's always on. Your code, tools, and dependencies are exactly where you left them.</div>
-            </div>
+            <div class="how-step-title">Persistent base instance. No rebuilds, ever.</div>
+            <div class="how-step-sub">Each researcher gets a personal environment that's always on. Your code, tools, and dependencies are exactly where you left them.</div>
           </div>
           <div class="how-step">
             <div class="how-num">03</div>
-            <div>
-              <div class="how-step-title">Simple lab management. No IT team needed.</div>
-              <div class="how-step-sub">Onboard users, set quotas, manage projects — all from one clean dashboard. Cloudexe handles the orchestration so your team can focus on research.</div>
-            </div>
+            <div class="how-step-title">Simple lab management. No IT team needed.</div>
+            <div class="how-step-sub">Onboard users, set quotas, manage projects — all from one clean dashboard. Cloudexe handles the orchestration so your team can focus on research.</div>
           </div>
         </div>
       </div>
