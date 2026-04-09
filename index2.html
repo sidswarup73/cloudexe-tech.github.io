@@ -180,65 +180,35 @@
     }
 
     /* ── Why ── */
-    .why-grid {
-      display: flex; flex-direction: column; gap: 0;
-    }
-
-    .why-row {
+    .why-problems {
       display: grid;
-      grid-template-columns: 1fr 32px 1fr;
-      gap: 0;
-      align-items: stretch;
-      border-top: 1px solid var(--line);
-      padding: 28px 0;
-    }
-    .why-row:last-child { border-bottom: 1px solid var(--line); }
-
-    .why-problem {
-      padding-right: 32px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      overflow: hidden;
     }
 
-    .why-solution {
-      padding-left: 32px;
-      border-left: 2px solid var(--orange-b);
+    .why-problem-card {
+      background: var(--white);
+      padding: 28px 24px 32px;
     }
 
-    .why-problem-label {
-      font-size: 10.5px; font-weight: 700;
-      letter-spacing: .7px; text-transform: uppercase;
-      color: var(--dim); margin-bottom: 8px;
-    }
-
-    .why-solution-label {
-      font-size: 10.5px; font-weight: 700;
-      letter-spacing: .7px; text-transform: uppercase;
-      color: var(--orange); margin-bottom: 8px;
+    .why-problem-num {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .7px; color: var(--dim);
+      margin-bottom: 14px;
     }
 
     .why-problem-title {
       font-size: 15px; font-weight: 700;
       letter-spacing: -.1px; color: var(--ink);
-      margin-bottom: 6px;
-    }
-
-    .why-solution-title {
-      font-size: 15px; font-weight: 700;
-      letter-spacing: -.1px; color: var(--ink);
-      margin-bottom: 6px;
+      margin-bottom: 10px; line-height: 1.3;
     }
 
     .why-problem-sub {
       font-size: 13.5px; color: var(--mid); line-height: 1.6;
-    }
-
-    .why-solution-sub {
-      font-size: 13.5px; color: var(--mid); line-height: 1.6;
-    }
-
-    .why-solve-arrow {
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; color: var(--orange);
-      font-weight: 300; padding-top: 20px;
     }
 
     /* ── Features ── */
@@ -728,9 +698,7 @@
     @media (max-width: 720px) {
       .hero-inner      { grid-template-columns: 1fr; gap: 40px; }
       .hero-visual     { display: none; }
-      .why-row         { grid-template-columns: 1fr; gap: 16px; }
-      .why-solve-arrow { display: none; }
-      .why-solution    { border-left: none; border-top: 2px solid var(--orange-b); padding-left: 0; padding-top: 16px; }
+      .why-problems    { grid-template-columns: 1fr; }
       .about-layout    { grid-template-columns: 1fr; gap: 40px; }
       .how-layout      { grid-template-columns: 1fr; gap: 40px; }
       .pricing-grid    { grid-template-columns: 1fr; }
@@ -913,50 +881,26 @@
   <div class="wrap">
     <span class="eyebrow">Why Cloudexe</span>
     <h2 class="section-h" style="margin-bottom: 8px;">Traditional clouds weren't built for research.</h2>
-    <p class="section-p" style="margin-bottom: 52px;">They were built for IT teams. Here's what that costs you — and how Cloudexe fixes it.</p>
+    <p class="section-p" style="margin-bottom: 48px;">They were built for IT teams. Here's what that costs you.</p>
 
-    <div class="why-grid">
+    <div class="why-problems">
 
-      <div class="why-row">
-        <div class="why-problem">
-          <div class="why-problem-label">Problem</div>
-          <div class="why-problem-title">Cost vs. availability tradeoff</div>
-          <div class="why-problem-sub">Reserved instances are expensive. Spot instances disappear. Research teams end up either overpaying or waiting in queues when they need GPUs most.</div>
-        </div>
-        <div class="why-solve-arrow">→</div>
-        <div class="why-solution">
-          <div class="why-solution-label">Cloudexe</div>
-          <div class="why-solution-title">JIT GPU architecture</div>
-          <div class="why-solution-sub">GPUs attach to your job on demand and release when done. The shared fleet stays highly utilized — keeping availability high and your cost low.</div>
-        </div>
+      <div class="why-problem-card">
+        <div class="why-problem-num">01</div>
+        <div class="why-problem-title">Cost vs. availability tradeoff</div>
+        <div class="why-problem-sub">Reserved instances are expensive. Spot instances disappear. Research teams end up either overpaying or waiting in queues when they need GPUs most.</div>
       </div>
 
-      <div class="why-row">
-        <div class="why-problem">
-          <div class="why-problem-label">Problem</div>
-          <div class="why-problem-title">Needs a sysadmin to operate</div>
-          <div class="why-problem-sub">Hyperscaler UX is built for IT professionals. Researchers end up managing VMs, containers, and networking instead of running experiments.</div>
-        </div>
-        <div class="why-solve-arrow">→</div>
-        <div class="why-solution">
-          <div class="why-solution-label">Cloudexe</div>
-          <div class="why-solution-title">Simple lab management</div>
-          <div class="why-solution-sub">Onboard users, set quotas, manage projects — all from one clean dashboard. No IT team required.</div>
-        </div>
+      <div class="why-problem-card">
+        <div class="why-problem-num">02</div>
+        <div class="why-problem-title">Requires a sysadmin to operate</div>
+        <div class="why-problem-sub">Hyperscaler UX is designed for IT professionals. Researchers end up managing VMs, containers, and networking instead of running experiments.</div>
       </div>
 
-      <div class="why-row">
-        <div class="why-problem">
-          <div class="why-problem-label">Problem</div>
-          <div class="why-problem-title">Constant syncing and rebuilding</div>
-          <div class="why-problem-sub">Every new session means re-uploading code, reinstalling dependencies, and waiting for environments to spin up. Context-switching kills research momentum.</div>
-        </div>
-        <div class="why-solve-arrow">→</div>
-        <div class="why-solution">
-          <div class="why-solution-label">Cloudexe</div>
-          <div class="why-solution-title">Persistent base instance</div>
-          <div class="why-solution-sub">Each researcher gets a personal environment that's always on. Your code, tools, and dependencies stay exactly as you left them. No rebuilds, ever.</div>
-        </div>
+      <div class="why-problem-card">
+        <div class="why-problem-num">03</div>
+        <div class="why-problem-title">Constant syncing and rebuilding</div>
+        <div class="why-problem-sub">Every new session means re-uploading code, reinstalling dependencies, and waiting for environments to spin up. Context-switching kills research momentum.</div>
       </div>
 
     </div>
@@ -970,27 +914,27 @@
       <div>
         <span class="eyebrow">How it works</span>
         <h2 class="section-h">Persistent environment. On-demand GPUs.</h2>
-        <p class="section-p" style="margin-bottom: 36px;">Cloudexe separates your environment from your compute — a small architectural change with an outsized impact on productivity.</p>
+        <p class="section-p" style="margin-bottom: 36px;">Cloudexe separates your environment from your compute — solving all three problems at once.</p>
         <div class="how-steps">
           <div class="how-step">
-            <div class="how-num">1</div>
+            <div class="how-num">01</div>
             <div>
-              <div class="how-step-title">Your personal base instance, always on</div>
-              <div class="how-step-sub">Each researcher gets a persistent environment — code, tools, and dependencies stay exactly as you left them. No rebuilds, ever.</div>
+              <div class="how-step-title">JIT GPU architecture</div>
+              <div class="how-step-sub">GPUs attach to your job on demand and release when done. The shared fleet stays highly utilized — availability stays high, your bill stays low.</div>
             </div>
           </div>
           <div class="how-step">
-            <div class="how-num">2</div>
+            <div class="how-num">02</div>
             <div>
-              <div class="how-step-title">GPUs attach just-in-time, per job</div>
-              <div class="how-step-sub">Submit a job and a GPU attaches automatically. When it's done, it releases back into the fleet — keeping availability high and your costs low.</div>
+              <div class="how-step-title">Persistent base instance. No rebuilds, ever.</div>
+              <div class="how-step-sub">Each researcher gets a personal environment that's always on. Your code, tools, and dependencies are exactly where you left them.</div>
             </div>
           </div>
           <div class="how-step">
-            <div class="how-num">3</div>
+            <div class="how-num">03</div>
             <div>
-              <div class="how-step-title">No pod juggling. No failure points.</div>
-              <div class="how-step-sub">No VMs or containers to manage. Your team gets a clean dashboard for users, quotas, and usage — Cloudexe handles the orchestration.</div>
+              <div class="how-step-title">Simple lab management. No IT team needed.</div>
+              <div class="how-step-sub">Onboard users, set quotas, manage projects — all from one clean dashboard. Cloudexe handles the orchestration so your team can focus on research.</div>
             </div>
           </div>
         </div>
